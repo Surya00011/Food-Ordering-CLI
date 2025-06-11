@@ -6,7 +6,7 @@ public class FoodApp {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         char choice;
-
+        Noodles noodles = new Noodles();
         do {
             System.out.println("Welcome to Food_App..!");
             System.out.println("Press Y to See the list of available Items");
@@ -26,14 +26,22 @@ public class FoodApp {
                     int foodChoice = input.nextInt();
                     switch(foodChoice){
                         case 1:
-                            Noodles noodles = new Noodles();
                             String[] typesOfNoodles = noodles.getTypesOfNoodles();
                             for(int i=0;i<typesOfNoodles.length;i++){
                                 System.out.println("Press "+(i+1)+" to order "+typesOfNoodles[i]);
                             }
                             System.out.println("Press 0 to back");
                             int noodleChoice = input.nextInt();
-                            String myOrder = noodles.orderNoodles(typesOfNoodles[noodleChoice-1]);
+                            System.out.println("Enter Quantity");
+                            int quantity = 1;
+                            quantity=input.nextInt();
+                            if(quantity<1){
+                                System.out.println("Quantity can't be less 0");
+                            }
+                            String myOrder="";
+                            if(quantity>=1) {
+                               myOrder = noodles.orderNoodles(typesOfNoodles[noodleChoice - 1], quantity);
+                            }
                             System.out.println(myOrder);
                             break;
                         case 0:
